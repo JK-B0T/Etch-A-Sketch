@@ -19,8 +19,8 @@ and if that number is more than 0 and less or equal to 100.
 not currently black turn 10% more darker.
 */
 const DEFAULT_SIZE = 16;
-var lastRowNum = DEFAULT_SIZE;
-var lastColumnNum = DEFAULT_SIZE;
+let lastRowNum = DEFAULT_SIZE;
+let lastColumnNum = DEFAULT_SIZE;
 
 const rowInput = document.querySelector("#rowInput");
 const columnInput = document.querySelector("#columnInput");
@@ -79,6 +79,14 @@ function setBoard () {
     }
 }
 
+function paintSquare (e) {
+    let square = document.elementFromPoint(e.clientX, e.clientY);
+    if (square.className === "columnItem") {
+        square.style.backgroundColor = "black";
+    }
+}
+
 rowInput.addEventListener("input", setRows, false);
 columnInput.addEventListener("input", setColumns, false);
 resetBtn.addEventListener("click", setBoard, false);
+window.addEventListener("mouseover", paintSquare, false);

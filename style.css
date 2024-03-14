@@ -35,6 +35,7 @@ input {
     height: 90vh;
     justify-content: stretch;
     align-items: stretch;
+    pointer-events: none;
 }
 
 .rowContainer {
@@ -44,4 +45,5 @@ input {
 .columnItem {
     border: 1px solid black;
     flex: 1 1 auto;
+    pointer-events: auto;
 }
