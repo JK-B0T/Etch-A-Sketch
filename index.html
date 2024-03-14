@@ -4,8 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-A-Sketch</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
 </head>
 <body>
-    
+    <div id="inputContainer">
+        <div class="boardOptionsContainer">
+            <label for="rowInput">Rows</label>
+            <hr>
+            <input id="rowInput" type="text" value="16">
+        </div>
+        <button id="resetBtn">Reset Grid</button>
+        <div class="boardOptionsContainer">
+            <label for="columnInput">Columns</label>
+            <hr>
+            <input id="columnInput" type="text" value="16">
+        </div>
+    </div>
+    <div id="boardContainer">
+
+    </div>
 </body>
 </html>

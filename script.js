@@ -18,3 +18,51 @@ and if that number is more than 0 and less or equal to 100.
 5.every square touched is an interaction, and for every interaction all saquares
 not currently black turn 10% more darker.
 */
+const DEFAULT_SIZE = 16;
+var lastRowNum = DEFAULT_SIZE;
+var lastColumnNum = DEFAULT_SIZE;
+
+const rowInput = document.querySelector("#rowInput");
+const columnInput = document.querySelector("#columnInput");
+const resetBtn = document.querySelector("#resetBtn");
+
+function setRows () {
+    let rows = +rowInput.value;
+    console.log(rows ,typeof rows);
+    if (isNaN(rows)) {
+        rowInput.value = lastRowNum;
+        return lastRowNum;
+    } else if (rows <= 0) {
+        rowInput.value = 1;
+        lastRowNum = 1;
+    } else if (rows > 100){
+        rowInput.value = 100;
+        lastRowNum = 100;
+    } else {
+        lastRowNum = rows;
+    }
+}
+function setColumns () {
+    let columns = +columnInput.value;
+    console.log(columns ,typeof columns)
+    if (isNaN(columns)) {
+        columnInput.value = lastColumnNum;
+        return lastColumnNum;
+    } else if (rows <= 0) {
+        columnInput.value = 1;
+        lastColumnNum = 1;
+    } else if (columns > 100){
+        columnInput.value = 100;
+        lastColumnNum = 100;
+    } else {
+        lastColumnNum = columns;
+    }
+}
+
+function setBoard () {
+
+}
+
+rowInput.addEventListener("input", setRows, false);
+columnInput.addEventListener("input", setColumns, false);
+resetBtn.addEventListener("input", setBoard, false);
