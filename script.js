@@ -25,10 +25,11 @@ var lastColumnNum = DEFAULT_SIZE;
 const rowInput = document.querySelector("#rowInput");
 const columnInput = document.querySelector("#columnInput");
 const resetBtn = document.querySelector("#resetBtn");
+const boardContainer = document.querySelector("#boardContainer")
 
 function setRows () {
     let rows = +rowInput.value;
-    console.log(rows ,typeof rows);
+
     if (isNaN(rows)) {
         rowInput.value = lastRowNum;
         return lastRowNum;
@@ -44,11 +45,11 @@ function setRows () {
 }
 function setColumns () {
     let columns = +columnInput.value;
-    console.log(columns ,typeof columns)
+
     if (isNaN(columns)) {
         columnInput.value = lastColumnNum;
         return lastColumnNum;
-    } else if (rows <= 0) {
+    } else if (columns <= 0) {
         columnInput.value = 1;
         lastColumnNum = 1;
     } else if (columns > 100){
@@ -60,9 +61,24 @@ function setColumns () {
 }
 
 function setBoard () {
+    const row = document.createElement("div");
+    const column = document.createElement("div");
+    row.classList.add("rowContainer");
+    column.classList.add("columnItem");
+    while (boardContainer.firstChild) {
+        boardContainer.removeChild(boardContainer.firstChild);
+    }
 
+    for (let i = 0; i < lastColumnNum; i++) {
+        const columnClone = column.cloneNode();
+        row.appendChild(columnClone);
+    }
+    for (let i = 0; i < lastRowNum; i++) {
+        const rowClone = row.cloneNode(true);
+        boardContainer.appendChild(rowClone);
+    }
 }
 
 rowInput.addEventListener("input", setRows, false);
 columnInput.addEventListener("input", setColumns, false);
-resetBtn.addEventListener("input", setBoard, false);
+resetBtn.addEventListener("click", setBoard, false);
