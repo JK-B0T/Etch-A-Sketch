@@ -31,8 +31,8 @@ input {
     display: flex;
     flex-direction: column;
     border: 5px solid orange;
-    width: 800px;
-    height: 800px;
+    width: 90vh;
+    height: 90vh;
     justify-content: stretch;
     align-items: stretch;
 }
