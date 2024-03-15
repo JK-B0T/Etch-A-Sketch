@@ -87,22 +87,34 @@ function getRandomColor () {
 }
 
 function darkenColor (rgbColor) {
+    let concadenatedNumber = "";
+    let colorArr = []
 
+    for (let i = 0; i < rgbColor.length; i++) {
+        if (!isNaN(+rgbColor[i])) {
+            concadenatedNumber += rgbColor[i];
+        } else if (rgbColor[i] === "," || rgbColor[i] === ")") {
+            colorArr.push((+concadenatedNumber) - (+concadenatedNumber * 0.1));
+            concadenatedNumber = "";
+        }
+    }
+    return `rgb(${colorArr})`;
 }
 
 function queuingColor (e) {
     if (darkeningQueue.length <= 11) {
-        darkeningQueue.push(e.target)
+        darkeningQueue.push(e.target);
     } else {
-        darkeningQueue.shift()
-        darkeningQueue.push(e.target)
-        console.log(e.target.style.backgroundColor);
+        darkeningQueue.shift();
+        darkeningQueue.push(e.target);
     }
 
     for (let i = 0; i < darkeningQueue.length; i++) {
-        darkeningQueue[i].style.backgroundColor =
-        `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`;
-        //darkenColor(darkeningQueue[i].style.backgroundColor);
+        if (darkeningQueue[i] == 0 && darkeningQueue.length == 12) {
+            darkeningQueue[i].style.backgroundColor = "black";
+        } else {
+            darkeningQueue[i].style.backgroundColor = darkenColor(darkeningQueue[i].style.backgroundColor);
+        }
     }
 }
 
