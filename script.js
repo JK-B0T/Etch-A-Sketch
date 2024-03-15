@@ -110,8 +110,10 @@ function queuingColor (e) {
     }
 
     for (let i = 0; i < darkeningQueue.length; i++) {
-        if (darkeningQueue[i] == 0 && darkeningQueue.length == 12) {
+        
+        if (i == 0 && darkeningQueue.length == 12) {
             darkeningQueue[i].style.backgroundColor = "black";
+            console.log(darkeningQueue[i])
         } else {
             darkeningQueue[i].style.backgroundColor = darkenColor(darkeningQueue[i].style.backgroundColor);
         }
