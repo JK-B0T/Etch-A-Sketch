@@ -86,7 +86,11 @@ function getRandomColor () {
    return Math.floor(Math.random() * 255); 
 }
 
-function darkenColor (e) {
+function darkenColor (rgbColor) {
+
+}
+
+function queuingColor (e) {
     if (darkeningQueue.length <= 11) {
         darkeningQueue.push(e.target)
     } else {
@@ -95,10 +99,11 @@ function darkenColor (e) {
         console.log(e.target.style.backgroundColor);
     }
 
-    /*for (let i = 0; i < darkeningQueue.length; i++) {
+    for (let i = 0; i < darkeningQueue.length; i++) {
         darkeningQueue[i].style.backgroundColor =
         `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`;
-    }*/
+        //darkenColor(darkeningQueue[i].style.backgroundColor);
+    }
 }
 
 function paintSquare (e) {
@@ -106,7 +111,7 @@ function paintSquare (e) {
     if (element.className === "columnItem") {
         element.style.backgroundColor = `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`;
         e.stopPropagation();
-        darkenColor(e);
+        queuingColor(e);
     }
 }
 
