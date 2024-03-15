@@ -18,9 +18,12 @@ and if that number is more than 0 and less or equal to 100.
 5.every square touched is an interaction, and for every interaction all saquares
 not currently black turn 10% more darker.
 */
+"use strict";
+
 const DEFAULT_SIZE = 16;
 let lastRowNum = DEFAULT_SIZE;
 let lastColumnNum = DEFAULT_SIZE;
+const darkeningQueue = []
 
 const rowInput = document.querySelector("#rowInput");
 const columnInput = document.querySelector("#columnInput");
@@ -79,10 +82,31 @@ function setBoard () {
     }
 }
 
+function getRandomColor () {
+   return Math.floor(Math.random() * 255); 
+}
+
+function darkenColor (e) {
+    if (darkeningQueue.length <= 11) {
+        darkeningQueue.push(e.target)
+    } else {
+        darkeningQueue.shift()
+        darkeningQueue.push(e.target)
+        console.log(e.target.style.backgroundColor);
+    }
+
+    /*for (let i = 0; i < darkeningQueue.length; i++) {
+        darkeningQueue[i].style.backgroundColor =
+        `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`;
+    }*/
+}
+
 function paintSquare (e) {
-    let square = document.elementFromPoint(e.clientX, e.clientY);
-    if (square.className === "columnItem") {
-        square.style.backgroundColor = "black";
+    let element = e.target;
+    if (element.className === "columnItem") {
+        element.style.backgroundColor = `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`;
+        e.stopPropagation();
+        darkenColor(e);
     }
 }
 
