@@ -82,8 +82,30 @@ function setBoard () {
     }
 }
 
+function getRandomNumber (maxNumber) {
+    return Math.floor(Math.random() * (maxNumber + 1)); 
+}
+
 function getRandomColor () {
-   return Math.floor(Math.random() * 255); 
+    let maxPrimaryColor = getRandomNumber(2); 
+    let maxSecondaryColor = getRandomNumber(1); 
+
+    switch (maxPrimaryColor) {
+        case 0:
+            return maxSecondaryColor === 0 
+            ?`rgb(255,0,${getRandomNumber(255)})`
+            :`rgb(255,${getRandomNumber(255)},0)`;
+        case 1:
+            return maxSecondaryColor === 0 
+            ?`rgb(0,255,${getRandomNumber(255)})`
+            :`rgb(${getRandomNumber(255)},255,0)`;
+        case 2:
+            return maxSecondaryColor === 0 
+            ?`rgb(${getRandomNumber(255)},0,255)`
+            :`rgb(0,${getRandomNumber(255)},255)`;
+        default:
+            return `rgb(${getRandomNumber(255)},${getRandomNumber(255)},${getRandomNumber(255)})`
+    }
 }
 
 function darkenColor (rgbColor) {
@@ -94,7 +116,7 @@ function darkenColor (rgbColor) {
         if (!isNaN(+rgbColor[i])) {
             concadenatedNumber += rgbColor[i];
         } else if (rgbColor[i] === "," || rgbColor[i] === ")") {
-            colorArr.push((+concadenatedNumber) - (+concadenatedNumber * 0.1));
+            colorArr.push((+concadenatedNumber) - (+concadenatedNumber * 0.2));
             concadenatedNumber = "";
         }
     }
@@ -109,11 +131,10 @@ function queuingColor (e) {
         darkeningQueue.push(e.target);
     }
 
-    for (let i = 0; i < darkeningQueue.length; i++) {
+    for (let i = 0; i < darkeningQueue.length-1; i++) {
         
         if (i == 0 && darkeningQueue.length == 12) {
             darkeningQueue[i].style.backgroundColor = "black";
-            console.log(darkeningQueue[i])
         } else {
             darkeningQueue[i].style.backgroundColor = darkenColor(darkeningQueue[i].style.backgroundColor);
         }
@@ -123,7 +144,7 @@ function queuingColor (e) {
 function paintSquare (e) {
     let element = e.target;
     if (element.className === "columnItem") {
-        element.style.backgroundColor = `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`;
+        element.style.backgroundColor = getRandomColor();
         e.stopPropagation();
         queuingColor(e);
     }
