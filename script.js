@@ -87,25 +87,7 @@ function getRandomNumber (maxNumber) {
 }
 
 function getRandomColor () {
-    let maxPrimaryColor = getRandomNumber(2); 
-    let maxSecondaryColor = getRandomNumber(1); 
-
-    switch (maxPrimaryColor) {
-        case 0:
-            return maxSecondaryColor === 0 
-            ?`rgb(255,0,${getRandomNumber(255)})`
-            :`rgb(255,${getRandomNumber(255)},0)`;
-        case 1:
-            return maxSecondaryColor === 0 
-            ?`rgb(0,255,${getRandomNumber(255)})`
-            :`rgb(${getRandomNumber(255)},255,0)`;
-        case 2:
-            return maxSecondaryColor === 0 
-            ?`rgb(${getRandomNumber(255)},0,255)`
-            :`rgb(0,${getRandomNumber(255)},255)`;
-        default:
-            return `rgb(${getRandomNumber(255)},${getRandomNumber(255)},${getRandomNumber(255)})`
-    }
+    return `hsl(${getRandomNumber(360)} 100 50)`
 }
 
 function darkenColor (rgbColor) {
@@ -116,7 +98,7 @@ function darkenColor (rgbColor) {
         if (!isNaN(+rgbColor[i])) {
             concadenatedNumber += rgbColor[i];
         } else if (rgbColor[i] === "," || rgbColor[i] === ")") {
-            colorArr.push((+concadenatedNumber) - (+concadenatedNumber * 0.2));
+            colorArr.push((+concadenatedNumber) - (+concadenatedNumber * 0.25));
             concadenatedNumber = "";
         }
     }
