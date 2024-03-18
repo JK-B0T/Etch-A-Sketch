@@ -10,6 +10,9 @@ const columnInput = document.querySelector("#columnInput");
 const resetBtn = document.querySelector("#resetBtn");
 const boardContainer = document.querySelector("#boardContainer")
 
+rowInput.value = 16;
+columnInput.value = 16;
+
 function setRows () {
     let rows = +rowInput.value;
 
@@ -62,15 +65,17 @@ function setBoard () {
         boardContainer.appendChild(rowClone);
     }
 
-    if (lastColumnNum === lastRowNum ) {
+    if (lastColumnNum === lastRowNum) {
         boardContainer.style.width = "90vh";
         boardContainer.style.height = "90vh";
     } else if (lastColumnNum > lastRowNum) {
         const newBoardHeight = 90 * (lastRowNum / lastColumnNum);
         boardContainer.style.height = newBoardHeight + "vh";
+        boardContainer.style.width = "90vh";
     } else {
         const newBoardWidth = 90 * (lastColumnNum / lastRowNum);
         boardContainer.style.width = newBoardWidth + "vh";
+        boardContainer.style.height = "90vh";
     }
 }
 
@@ -128,3 +133,5 @@ rowInput.addEventListener("input", setRows, false);
 columnInput.addEventListener("input", setColumns, false);
 resetBtn.addEventListener("click", setBoard, false);
 window.addEventListener("mouseover", paintSquare, false);
+
+setBoard();
