@@ -19,9 +19,9 @@ function setRows () {
     if (isNaN(rows)) {
         rowInput.value = lastRowNum;
         return lastRowNum;
-    } else if (rows <= 0) {
-        rowInput.value = 1;
-        lastRowNum = 1;
+    } else if (rows < 5) {
+        rowInput.value = 5;
+        lastRowNum = 5;
     } else if (rows > 100){
         rowInput.value = 100;
         lastRowNum = 100;
@@ -35,9 +35,9 @@ function setColumns () {
     if (isNaN(columns)) {
         columnInput.value = lastColumnNum;
         return lastColumnNum;
-    } else if (columns <= 0) {
-        columnInput.value = 1;
-        lastColumnNum = 1;
+    } else if (columns < 5) {
+        columnInput.value = 5;
+        lastColumnNum = 5;
     } else if (columns > 100){
         columnInput.value = 100;
         lastColumnNum = 100;

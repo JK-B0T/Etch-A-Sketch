@@ -5,7 +5,7 @@ The purpose of this project is to practice and demonstrate DOM manipulation skil
 (Grid has to be responsive, more squares means more detail in the board, as they will become smaller).
 
 2.Input is got by the script and sees if it is a number
-and if that number is more than 0 and less or equal to 100.
+and if that number is more than 5 and less or equal to 100.
 
 3.When the button is pressed the grid is generated and all square colors are reset.
 
