@@ -129,8 +129,8 @@ function paintSquare (e) {
     }
 }
 
-rowInput.addEventListener("input", setRows, false);
-columnInput.addEventListener("input", setColumns, false);
+rowInput.addEventListener("change", setRows, false);
+columnInput.addEventListener("change", setColumns, false);
 resetBtn.addEventListener("click", setBoard, false);
 window.addEventListener("mouseover", paintSquare, false);
 
